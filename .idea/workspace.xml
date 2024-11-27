@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa05f38f-6768-40d6-b0c5-4c2073dee057" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="aa05f38f-6768-40d6-b0c5-4c2073dee057" name="Changes" comment="Create child class of Unite Class">
       <change afterPath="$PROJECT_DIR$/src/main/java/jeu/Jeu.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/jeu/ennemi/Boss.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/jeu/ennemi/EnnemiFaible.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/jeu/ennemi/EnnemiIntermediaire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/Archer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/Cavalier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/Soldat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/Unite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iticparis/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/iticparis/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iticparis/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,11 +87,42 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732715584326</updated>
-      <workItem from="1732715585361" duration="4144000" />
+      <workItem from="1732715585361" duration="4484000" />
     </task>
+    <task id="LOCAL-00001" summary="INIT PROJECT">
+      <option name="closed" value="true" />
+      <created>1732724999236</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732724999236</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Create unit class">
+      <option name="closed" value="true" />
+      <created>1732725061574</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732725061574</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Create child class of Unite Class">
+      <option name="closed" value="true" />
+      <created>1732725105291</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732725105291</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="INIT PROJECT" />
+    <MESSAGE value="Create unit class" />
+    <MESSAGE value="Create child class of Unite Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create child class of Unite Class" />
   </component>
 </project>
