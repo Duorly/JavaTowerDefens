@@ -6,13 +6,14 @@ import jeu.unite.Soldat;
 import jeu.unite.Unite;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Jeu {
     private int argent;
-    private ArrayList<Unite> armee;
-    private ArrayList<Unite> ennemis;
+    private final ArrayList<Unite> armee;
+    private final ArrayList<Unite> ennemis;
     private int tour;
     private String niveauDeDifficulte;
 
@@ -103,11 +104,7 @@ public class Jeu {
     private void genererEnnemis(int tour) {
         ennemis.clear();
         Random random = new Random();
-        int multiplicateur = switch (niveauDeDifficulte) {
-            case "Facile" -> 1;
-            case "Difficile" -> 2;
-            default -> 1;
-        };
+        int multiplicateur = Objects.equals(niveauDeDifficulte, "Difficile") ? 2 : 1;
 
         int nombreEnnemis = (3 + tour) * multiplicateur;
         for (int i = 0; i < nombreEnnemis; i++) {
@@ -127,7 +124,7 @@ public class Jeu {
         System.out.println("1. Soldat Rebelle (50 Crédits Galactiques)\n2. Commando Clone (70 Crédits Galactiques)\n3. Chevalier JEDI (150 Crédits Galactiques)");
         int choix = lireEntreeEntier(scanner);
 
-        Unite nouvelleUnite = null;
+        Unite nouvelleUnite;
         if (choix == 1) {
             nouvelleUnite = new Soldat();
         } else if (choix == 2) {
