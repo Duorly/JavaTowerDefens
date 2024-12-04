@@ -26,7 +26,7 @@ public class Jeu {
     }
 
     public void demarrer() {
-        System.out.println("Bienvenue dans votre Tower Defense !");
+        System.out.println("Bienvenue dans votre Starwars Tower Defense !");
         Scanner scanner = new Scanner(System.in);
         choisirDifficulte(scanner);
 
@@ -67,7 +67,7 @@ public class Jeu {
         for (Unite unite : armee) {
             System.out.println("  - " + unite);
         }
-        System.out.println("Ennemis :");
+        System.out.println("\nEnnemis :");
         for (Unite ennemi : ennemis) {
             System.out.println("  - " + ennemi);
         }
@@ -108,7 +108,7 @@ public class Jeu {
 
         int nombreEnnemis = (3 + tour) * multiplicateur;
         for (int i = 0; i < nombreEnnemis; i++) {
-            int type = random.nextInt(3); // 0 = faible, 1 = intermédiaire, 2 = boss
+            int type = random.nextInt(3);
             if (type == 0) {
                 ennemis.add(new Unite("Droïde de Combat B1", 50 * multiplicateur, 10 * multiplicateur, 5, 0));
             } else if (type == 1) {
@@ -152,10 +152,18 @@ public class Jeu {
 
         Random random = new Random();
         String[] messages = {
-                "Vos unités attaquent avec une rage incroyable !",
-                "Vos troupes s'élancent au combat en criant des slogans épiques !",
-                "Les ennemis tremblent devant la puissance de votre armée !"
+                "Que la Force soit avec nous, attaquez sans relâche !",
+                "Pour la Rébellion, écrasez l'ennemi !",
+                "L'Empire tremblera devant notre puissance !",
+                "Déployez vos sabres et vos blasters, la victoire nous attend !",
+                "Pour la République, chargez !",
+                "En avant, soldats de la galaxie, pour la liberté !",
+                "Les Sith ne passeront pas, attaquez avec honneur !",
+                "Unissez vos forces, ensemble nous sommes invincibles !",
+                "L'heure de la revanche est arrivée, que l'Empire tombe !",
+                "Frappez vite et fort, que nos ennemis se dispersent dans l'ombre !"
         };
+
 
         System.out.println(messages[random.nextInt(messages.length)]);
 
@@ -196,9 +204,9 @@ public class Jeu {
         Random random = new Random();
 
         String[] messages = {
-                "Vos unités s'organisent en une défense impénétrable !",
-                "Les ennemis frappent, mais votre armée résiste héroïquement !",
-                "Les murs tiennent bon, mais la bataille fait rage !"
+                "Tenez vos positions, nous ne céderons pas un pouce à l'Empire !",
+                "Les boucliers sont activés, résistez avec courage !",
+                "Que la Force renforce nos défenses, rien ne passera !"
         };
 
         System.out.println(messages[random.nextInt(messages.length)]);
