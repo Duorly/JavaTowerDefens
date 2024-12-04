@@ -1,7 +1,7 @@
 package jeu;
 
-import jeu.unite.Archer;
-import jeu.unite.Cavalier;
+import jeu.unite.Commando;
+import jeu.unite.ChevalierJedi;
 import jeu.unite.Soldat;
 import jeu.unite.Unite;
 
@@ -61,7 +61,7 @@ public class Jeu {
     }
 
     private void afficherEtat() {
-        System.out.println("Argent disponible: " + argent + " or");
+        System.out.println("Argent disponible: " + argent + " Crédits Galactiques");
         System.out.println("Votre armée :");
         for (Unite unite : armee) {
             System.out.println("  - " + unite);
@@ -113,27 +113,27 @@ public class Jeu {
         for (int i = 0; i < nombreEnnemis; i++) {
             int type = random.nextInt(3); // 0 = faible, 1 = intermédiaire, 2 = boss
             if (type == 0) {
-                ennemis.add(new Unite("Ennemi Faible", 50 * multiplicateur, 10 * multiplicateur, 5, 0));
+                ennemis.add(new Unite("Droïde de Combat B1", 50 * multiplicateur, 10 * multiplicateur, 5, 0));
             } else if (type == 1) {
-                ennemis.add(new Unite("Ennemi Intermédiaire", 100 * multiplicateur, 20 * multiplicateur, 10, 0));
+                ennemis.add(new Unite("Soldat Stormtrooper", 100 * multiplicateur, 20 * multiplicateur, 10, 0));
             } else {
-                ennemis.add(new Unite("Boss", 300 * multiplicateur, 50 * multiplicateur, 20, 0));
+                ennemis.add(new Unite("Inquisiteur Sith", 300 * multiplicateur, 50 * multiplicateur, 20, 0));
             }
         }
         System.out.println("Une vague d'ennemis est arrivée !");
     }
 
     public void acheterUnites(Scanner scanner) {
-        System.out.println("1. Soldat (50 or)\n2. Archer (70 or)\n3. Cavalier (150 or)");
+        System.out.println("1. Soldat Rebelle (50 Crédits Galactiques)\n2. Commando Clone (70 Crédits Galactiques)\n3. Chevalier JEDI (150 Crédits Galactiques)");
         int choix = lireEntreeEntier(scanner);
 
         Unite nouvelleUnite = null;
         if (choix == 1) {
             nouvelleUnite = new Soldat();
         } else if (choix == 2) {
-            nouvelleUnite = new Archer();
+            nouvelleUnite = new Commando();
         } else if (choix == 3) {
-            nouvelleUnite = new Cavalier();
+            nouvelleUnite = new ChevalierJedi();
         } else {
             System.out.println("Choix invalide.");
             return;
@@ -187,7 +187,7 @@ public class Jeu {
             System.out.println(ennemi.getNom() + " est détruit !");
         }
         for (Unite unite : unitesDetruites) {
-            System.out.println(unite.getNom() + " est détruite !");
+            System.out.println(unite.getNom() + " est détruit !");
         }
     }
 
