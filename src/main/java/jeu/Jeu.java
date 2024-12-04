@@ -6,7 +6,6 @@ import jeu.unite.Soldat;
 import jeu.unite.Unite;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,7 +15,6 @@ public class Jeu {
     private ArrayList<Unite> ennemis;
     private int tour;
     private String niveauDeDifficulte;
-
 
     public Jeu() {
         this.argent = 200; // Argent de départ
@@ -32,10 +30,10 @@ public class Jeu {
         choisirDifficulte(scanner);
 
         while (true) {
-            System.out.println("\nTour " + tour);
+            System.out.println("\n==== Tour " + tour + " ====");
             afficherEtat();
             System.out.println("1. Acheter des unités\n2. Attaquer\n3. Défendre\n4. Quitter");
-            int choix = scanner.nextInt();
+            int choix = lireEntreeEntier(scanner);
 
             switch (choix) {
                 case 1 -> acheterUnites(scanner);
@@ -43,6 +41,7 @@ public class Jeu {
                 case 3 -> defendre();
                 case 4 -> {
                     System.out.println("Merci d'avoir joué !");
+                    scanner.close();
                     return;
                 }
                 default -> System.out.println("Choix invalide.");
@@ -62,15 +61,21 @@ public class Jeu {
     }
 
     private void afficherEtat() {
-        System.out.println("Argent disponible: " + argent);
-        System.out.println("Votre armée: " + armee);
-        System.out.println("Ennemis: " + ennemis);
+        System.out.println("Argent disponible: " + argent + " or");
+        System.out.println("Votre armée :");
+        for (Unite unite : armee) {
+            System.out.println("  - " + unite);
+        }
+        System.out.println("Ennemis :");
+        for (Unite ennemi : ennemis) {
+            System.out.println("  - " + ennemi);
+        }
     }
 
     private void choisirDifficulte(Scanner scanner) {
         System.out.println("Choisissez le niveau de difficulté :");
         System.out.println("1. Facile\n2. Normal\n3. Difficile");
-        int choix = scanner.nextInt();
+        int choix = lireEntreeEntier(scanner);
 
         switch (choix) {
             case 1 -> {
@@ -119,8 +124,8 @@ public class Jeu {
     }
 
     public void acheterUnites(Scanner scanner) {
-        System.out.println("1. Soldat (50)\n2. Archer (70)\n3. Cavalier (150)");
-        int choix = scanner.nextInt();
+        System.out.println("1. Soldat (50 or)\n2. Archer (70 or)\n3. Cavalier (150 or)");
+        int choix = lireEntreeEntier(scanner);
 
         Unite nouvelleUnite = null;
         if (choix == 1) {
@@ -145,6 +150,9 @@ public class Jeu {
 
     public void attaquer() {
         System.out.println("Phase d'attaque !");
+        ArrayList<Unite> ennemisDetruits = new ArrayList<>();
+        ArrayList<Unite> unitesDetruites = new ArrayList<>();
+
         Random random = new Random();
         String[] messages = {
                 "Vos unités attaquent avec une rage incroyable !",
@@ -154,24 +162,42 @@ public class Jeu {
 
         System.out.println(messages[random.nextInt(messages.length)]);
 
-        Iterator<Unite> iterEnnemis = ennemis.iterator();
-        while (iterEnnemis.hasNext()) {
-            Unite ennemi = iterEnnemis.next();
+
+        for (Unite ennemi : ennemis) {
             for (Unite unite : armee) {
                 ennemi.subirDegats(unite.attaquer());
+                unite.subirDegats(ennemi.attaquer() / 2); // Contre-attaque ennemie
+
                 if (ennemi.estDetruit()) {
-                    System.out.println(ennemi.getNom() + " est détruit !");
-                    iterEnnemis.remove();
+                    ennemisDetruits.add(ennemi);
                     argent += 50; // Récompense
+                    break;
+                }
+                if (unite.estDetruit()) {
+                    unitesDetruites.add(unite);
                     break;
                 }
             }
         }
+
+        ennemis.removeAll(ennemisDetruits);
+        armee.removeAll(unitesDetruites);
+
+        for (Unite ennemi : ennemisDetruits) {
+            System.out.println(ennemi.getNom() + " est détruit !");
+        }
+        for (Unite unite : unitesDetruites) {
+            System.out.println(unite.getNom() + " est détruite !");
+        }
     }
+
 
     public void defendre() {
         System.out.println("Phase de défense !");
+        ArrayList<Unite> unitesDetruites = new ArrayList<>();
+
         Random random = new Random();
+
         String[] messages = {
                 "Vos unités s'organisent en une défense impénétrable !",
                 "Les ennemis frappent, mais votre armée résiste héroïquement !",
@@ -180,15 +206,28 @@ public class Jeu {
 
         System.out.println(messages[random.nextInt(messages.length)]);
 
+
         for (Unite ennemi : ennemis) {
             for (Unite unite : armee) {
                 unite.subirDegats(ennemi.attaquer() / 2); // Réduction des dégâts
                 if (unite.estDetruit()) {
-                    System.out.println(unite.getNom() + " est détruit !");
-                    armee.remove(unite);
+                    unitesDetruites.add(unite);
                     break;
                 }
             }
         }
+
+        armee.removeAll(unitesDetruites);
+        for (Unite unite : unitesDetruites) {
+            System.out.println(unite.getNom() + " est détruite !");
+        }
+    }
+
+    private int lireEntreeEntier(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            System.out.println("Entrée invalide. Veuillez entrer un nombre entier.");
+            scanner.next();
+        }
+        return scanner.nextInt();
     }
 }

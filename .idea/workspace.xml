@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa05f38f-6768-40d6-b0c5-4c2073dee057" name="Changes" comment="Script to launch game">
+    <list default="true" id="aa05f38f-6768-40d6-b0c5-4c2073dee057" name="Changes" comment="Ajout du niveau de difficulté">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jeu/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeu/Jeu.java" afterDir="false" />
     </list>
@@ -99,7 +99,7 @@
       <workItem from="1732715585361" duration="5562000" />
       <workItem from="1732743579410" duration="714000" />
       <workItem from="1733257627137" duration="236000" />
-      <workItem from="1733258248252" duration="3855000" />
+      <workItem from="1733258248252" duration="5008000" />
     </task>
     <task id="LOCAL-00001" summary="INIT PROJECT">
       <option name="closed" value="true" />
@@ -149,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732725417168</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ajout du niveau de difficulté">
+      <option name="closed" value="true" />
+      <created>1733304648773</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733304648773</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +170,7 @@
     <MESSAGE value="Create Enemie Class to improve game" />
     <MESSAGE value="Create game features" />
     <MESSAGE value="Script to launch game" />
-    <option name="LAST_COMMIT_MESSAGE" value="Script to launch game" />
+    <MESSAGE value="Ajout du niveau de difficulté" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du niveau de difficulté" />
   </component>
 </project>
