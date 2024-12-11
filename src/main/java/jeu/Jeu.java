@@ -1,9 +1,6 @@
 package jeu;
 
-import jeu.unite.Commando;
-import jeu.unite.ChevalierJedi;
-import jeu.unite.Soldat;
-import jeu.unite.Unite;
+import jeu.unite.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,7 +15,7 @@ public class Jeu {
     private String niveauDeDifficulte;
 
     public Jeu() {
-        this.argent = 200; // Argent de départ
+        this.argent = 200;
         this.armee = new ArrayList<>();
         this.ennemis = new ArrayList<>();
         this.tour = 1;
@@ -38,7 +35,7 @@ public class Jeu {
 
             switch (choix) {
                 case 1 -> acheterUnites(scanner);
-                case 2 -> attaquer();
+                case 2 -> attaquer(scanner);
                 case 3 -> defendre();
                 case 4 -> {
                     System.out.println("Merci d'avoir joué !");
@@ -117,23 +114,30 @@ public class Jeu {
                 ennemis.add(new Unite("Inquisiteur Sith", 300 * multiplicateur, 50 * multiplicateur, 20, 0));
             }
         }
+
+        ennemis.add(new Unite("Assassin Droid", 120, 30, 10, 0));
+        ennemis.add(new Unite("Dark Trooper", 250, 60, 30, 0));
+        ennemis.add(new Unite("Bounty Hunter", 200, 40, 20, 0));
+
         System.out.println("Une vague d'ennemis est arrivée !");
     }
 
     public void acheterUnites(Scanner scanner) {
-        System.out.println("1. Soldat Rebelle (50 Crédits Galactiques)\n2. Commando Clone (70 Crédits Galactiques)\n3. Chevalier JEDI (150 Crédits Galactiques)");
+        System.out.println("1. Soldat Rebelle (50 Crédits Galactiques)\n2. Commando Clone (70 Crédits Galactiques)\n3. Chevalier JEDI (150 Crédits Galactiques)\n4. Droïde Avancé (80 Crédits Galactiques)\n5. Jedi Noir (200 Crédits Galactiques)\n6. Mercenaire (60 Crédits Galactiques)");
         int choix = lireEntreeEntier(scanner);
 
         Unite nouvelleUnite;
-        if (choix == 1) {
-            nouvelleUnite = new Soldat();
-        } else if (choix == 2) {
-            nouvelleUnite = new Commando();
-        } else if (choix == 3) {
-            nouvelleUnite = new ChevalierJedi();
-        } else {
-            System.out.println("Choix invalide.");
-            return;
+        switch (choix) {
+            case 1 -> nouvelleUnite = new Soldat();
+            case 2 -> nouvelleUnite = new Commando();
+            case 3 -> nouvelleUnite = new ChevalierJedi();
+            case 4 -> nouvelleUnite = new Droide();
+            case 5 -> nouvelleUnite = new JediNoir();
+            case 6 -> nouvelleUnite = new Mercenaire();
+            default -> {
+                System.out.println("Choix invalide.");
+                return;
+            }
         }
 
         if (nouvelleUnite.getCout() > argent) {
@@ -145,76 +149,56 @@ public class Jeu {
         }
     }
 
-    public void attaquer() {
-        System.out.println("Phase d'attaque !");
-        ArrayList<Unite> ennemisDetruits = new ArrayList<>();
+    public void attaquer(Scanner scanner) {
+        System.out.println("Phase d'attaque ! Choisissez un ennemi à attaquer :");
+        for (int i = 0; i < ennemis.size(); i++) {
+            System.out.println((i + 1) + ". " + ennemis.get(i));
+        }
+
+        int choix = lireEntreeEntier(scanner);
+        if (choix < 1 || choix > ennemis.size()) {
+            System.out.println("Choix invalide. Attaque annulée.");
+            return;
+        }
+
+        Unite cible = ennemis.get(choix - 1);
         ArrayList<Unite> unitesDetruites = new ArrayList<>();
 
-        Random random = new Random();
-        String[] messages = {
-                "Que la Force soit avec nous, attaquez sans relâche !",
-                "Pour la Rébellion, écrasez l'ennemi !",
-                "L'Empire tremblera devant notre puissance !",
-                "Déployez vos sabres et vos blasters, la victoire nous attend !",
-                "Pour la République, chargez !",
-                "En avant, soldats de la galaxie, pour la liberté !",
-                "Les Sith ne passeront pas, attaquez avec honneur !",
-                "Unissez vos forces, ensemble nous sommes invincibles !",
-                "L'heure de la revanche est arrivée, que l'Empire tombe !",
-                "Frappez vite et fort, que nos ennemis se dispersent dans l'ombre !"
-        };
+        for (Unite unite : armee) {
+            cible.subirDegats(unite.attaquer());
 
+            Random random = new Random();
+            if (random.nextBoolean()) { // Contre-attaque aléatoire
+                unite.subirDegats(cible.attaquer());
+            }
 
-        System.out.println(messages[random.nextInt(messages.length)]);
+            if (cible.estDetruit()) {
+                ennemis.remove(cible);
+                argent += 50; // Récompense
+                System.out.println(cible.getNom() + " est détruit !");
+                break;
+            }
 
-
-        for (Unite ennemi : ennemis) {
-            for (Unite unite : armee) {
-                ennemi.subirDegats(unite.attaquer());
-                unite.subirDegats(ennemi.attaquer() / 2); // Contre-attaque ennemie
-
-                if (ennemi.estDetruit()) {
-                    ennemisDetruits.add(ennemi);
-                    argent += 50; // Récompense
-                    break;
-                }
-                if (unite.estDetruit()) {
-                    unitesDetruites.add(unite);
-                    break;
-                }
+            if (unite.estDetruit()) {
+                unitesDetruites.add(unite);
             }
         }
 
-        ennemis.removeAll(ennemisDetruits);
         armee.removeAll(unitesDetruites);
-
-        for (Unite ennemi : ennemisDetruits) {
-            System.out.println(ennemi.getNom() + " est détruit !");
-        }
         for (Unite unite : unitesDetruites) {
             System.out.println(unite.getNom() + " est détruit !");
         }
     }
 
-
     public void defendre() {
         System.out.println("Phase de défense !");
         ArrayList<Unite> unitesDetruites = new ArrayList<>();
 
-        Random random = new Random();
-
-        String[] messages = {
-                "Tenez vos positions, nous ne céderons pas un pouce à l'Empire !",
-                "Les boucliers sont activés, résistez avec courage !",
-                "Que la Force renforce nos défenses, rien ne passera !"
-        };
-
-        System.out.println(messages[random.nextInt(messages.length)]);
-
+        defenseCri();
 
         for (Unite ennemi : ennemis) {
             for (Unite unite : armee) {
-                unite.subirDegats(ennemi.attaquer() / 2); // Réduction des dégâts
+                unite.subirDegats(ennemi.attaquer() / 2);
                 if (unite.estDetruit()) {
                     unitesDetruites.add(unite);
                     break;
@@ -234,5 +218,35 @@ public class Jeu {
             scanner.next();
         }
         return scanner.nextInt();
+    }
+
+    private void attaqueCri() {
+        Random random = new Random();
+        String[] messages = {
+                "Que la Force soit avec nous, attaquez sans relâche !",
+                "Pour la Rébellion, écrasez l'ennemi !",
+                "L'Empire tremblera devant notre puissance !",
+                "Déployez vos sabres et vos blasters, la victoire nous attend !",
+                "Pour la République, chargez !",
+                "En avant, soldats de la galaxie, pour la liberté !",
+                "Les Sith ne passeront pas, attaquez avec honneur !",
+                "Unissez vos forces, ensemble nous sommes invincibles !",
+                "L'heure de la revanche est arrivée, que l'Empire tombe !",
+                "Frappez vite et fort, que nos ennemis se dispersent dans l'ombre !"
+        };
+
+        System.out.println(messages[random.nextInt(messages.length)]);
+    }
+
+    private void defenseCri() {
+        Random random = new Random();
+
+        String[] messages = {
+                "Tenez vos positions, nous ne céderons pas un pouce à l'Empire !",
+                "Les boucliers sont activés, résistez avec courage !",
+                "Que la Force renforce nos défenses, rien ne passera !"
+        };
+
+        System.out.println(messages[random.nextInt(messages.length)]);
     }
 }
