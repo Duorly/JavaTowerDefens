@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa05f38f-6768-40d6-b0c5-4c2073dee057" name="Changes" comment="Add game slogan">
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/Droide.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/JediNoir.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jeu/unite/Mercenaire.java" afterDir="false" />
+    <list default="true" id="aa05f38f-6768-40d6-b0c5-4c2073dee057" name="Changes" comment="Add enemies and units, and select enemy to attack">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jeu/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeu/Jeu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iticparis/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iticparis/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +64,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="jeu.unite" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.iticparis.Main" />
@@ -108,7 +109,9 @@
       <workItem from="1732743579410" duration="714000" />
       <workItem from="1733257627137" duration="236000" />
       <workItem from="1733258248252" duration="10952000" />
-      <workItem from="1733875717053" duration="817000" />
+      <workItem from="1733875717053" duration="971000" />
+      <workItem from="1733909559779" duration="905000" />
+      <workItem from="1733923197457" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="INIT PROJECT">
       <option name="closed" value="true" />
@@ -198,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733308178673</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add enemies and units, and select enemy to attack">
+      <option name="closed" value="true" />
+      <created>1733876678275</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733876678275</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +238,7 @@
     <MESSAGE value="Change universe of game" />
     <MESSAGE value="Make my ArrayList final" />
     <MESSAGE value="Add game slogan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add game slogan" />
+    <MESSAGE value="Add enemies and units, and select enemy to attack" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add enemies and units, and select enemy to attack" />
   </component>
 </project>

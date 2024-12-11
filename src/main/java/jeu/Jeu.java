@@ -105,20 +105,21 @@ public class Jeu {
 
         int nombreEnnemis = (3 + tour) * multiplicateur;
         for (int i = 0; i < nombreEnnemis; i++) {
-            int type = random.nextInt(3);
+            int type = random.nextInt(6);
             if (type == 0) {
-                ennemis.add(new Unite("Droïde de Combat B1", 50 * multiplicateur, 10 * multiplicateur, 5, 0));
+                ennemis.add(new Unite("Droïd de Combat B1", 50 * multiplicateur, 10 * multiplicateur, 5, 0));
             } else if (type == 1) {
                 ennemis.add(new Unite("Soldat Stormtrooper", 100 * multiplicateur, 20 * multiplicateur, 10, 0));
+            } else if (type == 2) {
+                ennemis.add(new Unite("Inquisiteur Sith", 250 * multiplicateur, 50 * multiplicateur, 20, 0));
+            } else if (type == 3) {
+                ennemis.add(new Unite("Garde Impérial", 150 * multiplicateur, 30 * multiplicateur, 15, 0));
+            } else if (type == 4) {
+                ennemis.add(new Unite("Chasseur TIE", 80 * multiplicateur, 25 * multiplicateur, 8, 0));
             } else {
-                ennemis.add(new Unite("Inquisiteur Sith", 300 * multiplicateur, 50 * multiplicateur, 20, 0));
+                ennemis.add(new Unite("Darth Maul", 350 * multiplicateur, 70 * multiplicateur, 25, 0));
             }
         }
-
-        ennemis.add(new Unite("Assassin Droid", 120, 30, 10, 0));
-        ennemis.add(new Unite("Dark Trooper", 250, 60, 30, 0));
-        ennemis.add(new Unite("Bounty Hunter", 200, 40, 20, 0));
-
         System.out.println("Une vague d'ennemis est arrivée !");
     }
 
